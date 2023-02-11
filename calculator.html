@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator1</title>
+    <link rel="stylesheet" href="css/calculator.css">
+</head>
+<body>
+    <div id="width-container">
+        <!-- <div id="calculator-display"> -->
+            <input maxlength="10" id="calculator-display" inputmode="numeric" disabled>
+            <input maxlength="10" id="calculator-display1" inputmode="numeric" disabled>
+        <!-- </div   > -->
+        <div id="button-container">
+
+
+
+            <!-- Button row-1  -->
+            
+            <button onclick="calend(' '),buttonshadow('0')" onmouseout="buttonshadow1('0')">off</button>
+            <button onclick="calend('0'),buttonshadow('1')"  onmouseout="buttonshadow1('1')">c</button>
+            <button onclick="operator('%'),buttonshadow('2')"  onmouseout="buttonshadow1('2')">%</button>
+            <button onclick="operator('/'),buttonshadow('3')"  onmouseout="buttonshadow1('3')">/</button>
+            
+
+            <!-- Button row-2  -->
+
+
+            <button onclick="saveval('7'),buttonshadow('4')"  onmouseout="buttonshadow1('4')">7</button>
+            <button onclick="saveval('8'),buttonshadow('5')"  onmouseout="buttonshadow1('5')">8</button>
+            <button onclick="saveval('9'),buttonshadow('6')"  onmouseout="buttonshadow1('6')">9</button>
+            <button onclick="operator('*'),buttonshadow('7')"  onmouseout="buttonshadow1('7')">x</button>
+            
+
+            <!-- Button row-3  -->
+            
+
+            <button onclick="saveval('4'),buttonshadow('8')"  onmouseout="buttonshadow1('8')">4</button>
+            <button onclick="saveval('5'),buttonshadow('9')"  onmouseout="buttonshadow1('9')">5</button>
+            <button onclick="saveval('6'),buttonshadow('10')"  onmouseout="buttonshadow1('10')">6</button>
+            <button onclick="operator('-'),buttonshadow('11')"  onmouseout="buttonshadow1('11')">-</button>
+            
+
+            <!-- Button row-4  -->
+            
+
+            <button onclick="saveval('1'),buttonshadow('12')"  onmouseout="buttonshadow1('12')">1</button>
+            <button onclick="saveval('2'),buttonshadow('13')"  onmouseout="buttonshadow1('13')">2</button>
+            <button onclick="saveval('3'),buttonshadow('14')"  onmouseout="buttonshadow1('14')">3</button>
+            <button onclick="operator('+'),buttonshadow('15')"  onmouseout="buttonshadow1('15')">+</button>
+            
+
+            <!-- Button row-5  -->
+            
+
+            <button onclick="backspacevalue(),buttonshadow('16')"  onmouseout="buttonshadow1('16')">b/s</button>
+            <button onclick="saveval('0'),buttonshadow('17')"  onmouseout="buttonshadow1('17')">0</button>
+            <button onclick="operator('.'),buttonshadow('18')"  onmouseout="buttonshadow1('18')">.</button>
+            <button onclick="result (),buttonshadow('19')"  onmouseout="buttonshadow1('19')">=</button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+    
+        function saveval(buttonvalue)
+        {
+            let inputvalue = document.getElementById('calculator-display').value;
+            let inputvalue1 =   document.getElementById('calculator-display').value;
+
+            let inputvaluelen3 = inputvalue1.length;
+
+            let inputvaluelen1 = inputvalue1[inputvaluelen3-1];
+            
+            if(inputvalue == 0){
+                document.getElementById('calculator-display').value= " ";
+                document.getElementById('calculator-display').value+= buttonvalue; 
+            
+            }else{
+                document.getElementById('calculator-display').value+= buttonvalue; 
+              }
+            }
+
+
+
+            function operator(buttonvalue){
+                let inputvalue1 =   document.getElementById('calculator-display').value;
+
+                let inputvaluelen3 = inputvalue1.length;
+
+                let inputvaluelen1 = inputvalue1[inputvaluelen3-1];
+                // let inputvaluelen2 = inputvalue1[inputvaluelen3-2];
+            
+              
+                
+                 if(inputvalue1 == 0 || inputvalue1 == ""){
+                    document.getElementById('calculator-display').value="";} 
+                 else if(inputvaluelen1==buttonvalue){
+                    
+                    document.getElementById('calculator-display').value+=""; 
+                 }else if(inputvaluelen1 == "+" || inputvaluelen1 == "-" || inputvaluelen1 == "*" || inputvaluelen1 == "/" || inputvaluelen1 == "%"){
+                    
+                    let inputvaluelen2 = inputvalue1.substring(0, inputvaluelen3-1)+buttonvalue;
+                    document.getElementById('calculator-display').value =inputvaluelen2; 
+                 }else{ document.getElementById('calculator-display').value+= buttonvalue; 
+            }
+        }
+
+
+            function buttonshadow(a){
+                document.getElementsByTagName('button')[a].style.boxShadow='0px 1px 2px 2px darkgrey';
+            }
+
+
+
+            function buttonshadow1(a){
+                document.getElementsByTagName('button')[a].style.boxShadow='2px 4px 5px 5px darkgrey';
+            }
+
+
+
+    function result(){
+        let inputvalue1 =   document.getElementById('calculator-display').value;
+
+        let inputvaluelen3 = inputvalue1.length;
+
+        let inputvaluelen1 = inputvalue1[inputvaluelen3-1];
+        if(inputvaluelen1 == "+" || inputvaluelen1 == "-" || inputvaluelen1 == "*" || inputvaluelen1 == "/" || inputvaluelen1 == "%"){
+           
+       
+        let inputvaluelen2 = inputvalue1.substring(0,inputvaluelen3-1);
+        document.getElementById('calculator-display').value = eval(inputvaluelen2);
+         }else{ let resultval = document.getElementById('calculator-display').value;
+        document.getElementById('calculator-display').value = eval(resultval);
+    }
+    }
+
+
+    function backspacevalue(){
+        let inputvalue =   document.getElementById('calculator-display').value;
+        let inputvaluelen = inputvalue.length;
+       
+        let inputvaluelen2 = inputvalue.substring(0,inputvaluelen-1);
+        document.getElementById('calculator-display').value = inputvaluelen2;
+    }
+       
+    
+    
+
+    function calend(buttonvalue){
+          
+            document.getElementById('calculator-display').value = buttonvalue; 
+        }
+
+   
+       
+    </script>
+   
+</body>
+</html>
