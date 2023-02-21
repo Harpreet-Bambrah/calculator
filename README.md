@@ -1,2 +1,4 @@
 # calculator
-It is written in HTML, CSS, JavaScript it is doing operations like plus,minus,divide and multifications.
+* This repository includes calculator's files and it has one page.
+* It is written in HTML, CSS, JavaScript and responsive on all screeens (min-width:350px)
+* if user given inputs so it is perform operations such as plus,minus,divide and multifications.
